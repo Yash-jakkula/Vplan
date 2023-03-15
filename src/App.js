@@ -1,10 +1,10 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 import Home from './Home.js'
 import Card from './Card.js'
 import data from './data'
 import About from "./About.js"
-import TravelPlan from "./travelPlan.js"
+import Travel from './travelPlan';
 let CardDetails = data.map((place)=>{
   return(
     <Card 
@@ -12,11 +12,19 @@ let CardDetails = data.map((place)=>{
     />
   )
 })
+
+
+
+
+
 function App() {
+ 
   return (
     <div className="App">
-      {/* <TravelPlan /> */}
-        <About />
+      <div id='travel-component'>
+      <Travel />
+      </div>
+       <About />
         <Home />
         <div id="card-wrap" className='LowerContent'>
         {CardDetails}

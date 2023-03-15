@@ -1,6 +1,16 @@
 import React from "react"
+import data from "./data"
 export default function Card(props){
+    const [link,setLink]=React.useState("#")
+    function display(event,title) {
+        data.map(data => {
+            if(data.title===title)
+            setLink(data.wikipidia);
+        });
+      }
+      
     return(
+        <a id='wiki' onClick={(event)=>display(event,props.place.title)} href={link}>
             <div id="Card" className="card">
             <div className="card-component">
             <div className="card-img">
@@ -23,7 +33,7 @@ export default function Card(props){
     </div>
      </div>
      </div>
-
+     </a>
 
 
     )

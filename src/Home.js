@@ -1,39 +1,41 @@
 import React from "react"
 import Vplan, { change, travels } from "./Vplan.js"
-import TravelPlan from "./travelPlan.js"
+import Travel from "./travelPlan.js";
 export default function Home(){
-    function myComponent(){
+   
+const [weatherData,setWeatherData]=React.useState({});
+
+    function travelplaces(){
+        let destinationValue=document.getElementById("destination").value
+       tempData(destinationValue);
+        travels();
+    }
+
+    const tempData=async (city) => {
+        const options = {
+          method: 'GET',
+          headers: {
+            'X-RapidAPI-Key': '6439c721c4mshacfa680acaa10e8p154ee2jsn59535e836448',
+            'X-RapidAPI-Host': 'weather-by-api-ninjas.p.rapidapi.com'
+          }
+        };
+      
+        const weatherObj=await fetch(`https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${city}`, options)
+        const weatherData=await weatherObj.json();
+        setWeatherData(weatherData);
+      }
+
+
+      function myComponent(){
         change();
     }
 
-    function travelplaces(){
-        travels();
-        console.log("working!")
-    }
-
-    const [travelData,setTravelPlace]=React.useState({
-        source:"",
-        destination:""
-    });
-
-    function plan(event){
-        const {name,value}=event.target;
-    setTravelPlace(
-       prevPlaceDetails => ({...prevPlaceDetails,[name]:value }))
-    }
-
-    let details=(travelData)=>{
-        return (
-            <TravelPlan travelData={travelData} />
-        )
-    }
-
     return (
-        <div>
+        
 
-            <div>
+            /* <div  id="travel-component" style={{display:"none"}}>
                 {details}
-            </div>
+            </div> */
        
     <div id="Home" className="Home">
 
@@ -55,8 +57,8 @@ export default function Home(){
                         type="text" 
                         placeholder="From" 
                         name="source"
-                        value={travelData.source}
-                        onChange={plan}
+                        // value={travelData.source}
+                        // onChange={plan}
                         />
                         </div>
                         <div>
@@ -65,16 +67,18 @@ export default function Home(){
                         type="text" 
                         placeholder="To"
                         name="destination" 
-                        value={travelData.destination}
-                        onChange={plan}
+                        // value={travelData.destination}
+                        // onChange={plan}
                         />
                         </div>
                         <div>
-                        <button onClick={travelplaces}>Plan</button>
+                     <button onClick={travelplaces} className="btn plan">Plan</button>
                         </div>
                 </div>
             </div>
             <h2>Most Visited Places In India</h2>
+            <div className='travelDetails'>
+                {weatherData && <Travel weatherData={weatherData} />}
             </div>
             </div>
     )

@@ -1,7 +1,6 @@
-import React from "react"
+
 
 export function change(){
-    let element =document.getElementById("about");
 let aboutSection = document.getElementById("about-section");
 let Home = document.getElementById("Home");
 let CardWrapper = document.getElementById("card-wrap")
@@ -16,15 +15,27 @@ else{
     CardWrapper.style.display="flex"
 }
 }
-
+var destinationValue;
 export function travels(){
-    let travelPage=document.getElementById("travel-component");
+    let travelPage=document.querySelector('.travelDetails');
     let Home = document.getElementById("Home");
     let CardWrapper = document.getElementById("card-wrap");
-    if(travelPage.style.display==="none"){
-        travelPage.style.display="block";
+    let source=document.getElementById("source-place")
+    let destination=document.getElementById("destination-place")
+    let sourceValue=document.getElementById("source").value
+    destinationValue=document.getElementById("destination").value
+    if ( !destinationValue || !sourceValue){
+        alert("please enter the source and destination Place!")
+    }
+    else if(destinationValue===sourceValue){
+        alert('source and destination values should not be same!')
+    }
+    else if (window.getComputedStyle(travelPage).display === "none" && destinationValue && sourceValue){
+        travelPage.style.display="grid";
         Home.style.display="none";
         CardWrapper.style.display="none";
+        source.innerHTML=sourceValue
+        destination.innerHTML=destinationValue
     }
     else{
         travelPage.style.display="none";
@@ -32,3 +43,8 @@ export function travels(){
         CardWrapper.style.display="flex";
     }
 }
+
+ 
+
+
+

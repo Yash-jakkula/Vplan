@@ -7,11 +7,6 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 .body{
   margin:0;
   padding:0;
@@ -41,14 +36,17 @@
     transform: rotate(360deg);
   }
 }
+*{
+  margin:0;
+  padding:0;
+}
 
 nav{
-  margin:0;
-  box-shadow: 0px 2px 5px gray;
+  margin: 0;
+  box-shadow: 0px 2px 5px grey;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 10vh;
 }
 .Nav-content{
   width:60px;
@@ -62,6 +60,11 @@ nav{
 margin-right:10px;
 color:gray;
 text-decoration: none;
+}
+
+.info-wrap a:hover{
+  color:rgb(86, 86, 86);
+  text-decoration: underline;
 }
 
 
@@ -174,3 +177,96 @@ height: 55%;
   width:200px;
 }
 /* end of about */
+
+.travelDetails{
+  display: none;
+  grid-template-columns: 300px auto 300px;
+  column-gap: 40px;
+}
+
+#travel-component{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  grid-column: 2;
+}
+
+.sideBar{
+  grid-column: 1;
+  margin-top:30px;
+  padding-left:10px;
+}
+
+.sideBar h2{
+  text-align: left;
+  margin-left:15px;
+}
+
+.Booking{
+  background-color: azure;
+  margin-top:10px;
+  box-shadow: 2px 2px 5px gray;
+  padding:20px;
+  border-radius:10px;
+}
+
+.Booking:hover{
+  cursor: pointer;
+  background-color: orange;
+}
+
+.Booking h4{
+  margin:0px;
+}
+
+.s-d-container{
+  display: flex;
+  padding: 15px 50px;
+  justify-content: space-between;
+  align-items: center;
+  width:50%;
+  gap:10px;
+  text-align: center;
+}
+
+.source-div,.destination-div{
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+#source-place{
+  color:orange;
+}
+#destination-place{
+  color:green;
+}
+
+.To{
+  display: flex;
+  width: 100px;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  color: gray;
+}
+
+.content-container{
+  display: flex;
+  gap:20px;
+  width:700px;
+}
+
+.Map-route{
+  display: flex;
+  border-radius: 10px;
+  padding:10px;
+  margin: auto;
+}
+
+.map-img{
+  width:100%;
+  border-radius: 20px;
+}
+
+
