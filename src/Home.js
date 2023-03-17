@@ -1,29 +1,31 @@
 import React from "react"
 import Vplan, { change, travels } from "./Vplan.js"
 import Travel from "./travelPlan.js";
-export default function Home(){
+export default function Home(props){
    
-const [weatherData,setWeatherData]=React.useState({});
+const [destinationName,setDestinationName]=React.useState("");
 
     function travelplaces(){
         let destinationValue=document.getElementById("destination").value
-       tempData(destinationValue);
+        let tempData = async (destinationValue) => {
+            const options = {
+              method: 'GET',
+              headers: {
+                'X-RapidAPI-Key': '6439c721c4mshacfa680acaa10e8p154ee2jsn59535e836448',
+                'X-RapidAPI-Host': 'weather-by-api-ninjas.p.rapidapi.com'
+              }
+            };
+          
+            const weatherObj=await fetch(`https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${destinationValue}`, options)
+            const weatherData=await weatherObj.json();
+            props.setWeatherData(weatherData);
+          }
+          tempData(destinationValue);
         travels();
+        
     }
 
-    const tempData=async (city) => {
-        const options = {
-          method: 'GET',
-          headers: {
-            'X-RapidAPI-Key': '6439c721c4mshacfa680acaa10e8p154ee2jsn59535e836448',
-            'X-RapidAPI-Host': 'weather-by-api-ninjas.p.rapidapi.com'
-          }
-        };
-      
-        const weatherObj=await fetch(`https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${city}`, options)
-        const weatherData=await weatherObj.json();
-        setWeatherData(weatherData);
-      }
+  
 
 
       function myComponent(){
@@ -72,13 +74,13 @@ const [weatherData,setWeatherData]=React.useState({});
                         />
                         </div>
                         <div>
-                     <button onClick={travelplaces} className="btn plan">Plan</button>
+                     <button onClick={travelplaces}  className="btn plan">Plan</button>
                         </div>
                 </div>
             </div>
             <h2>Most Visited Places In India</h2>
             <div className='travelDetails'>
-                {weatherData && <Travel weatherData={weatherData} />}
+                {destinationName && <Travel destinationName={destinationName} />}
             </div>
             </div>
     )

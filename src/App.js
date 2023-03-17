@@ -14,18 +14,17 @@ let CardDetails = data.map((place)=>{
 })
 
 
-
-
-
 function App() {
+  
+const [weatherData,setWeatherData]=React.useState(null)
  
   return (
     <div className="App">
       <div id='travel-component'>
-      <Travel />
+      <Travel  weatherData={weatherData} />
       </div>
        <About />
-        <Home />
+        <Home setWeatherData={setWeatherData}/>
         <div id="card-wrap" className='LowerContent'>
         {CardDetails}
         </div>

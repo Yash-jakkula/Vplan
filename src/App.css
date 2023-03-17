@@ -217,8 +217,9 @@ height: 55%;
 }
 
 .Booking h4{
-  margin:0px;
+  margin:0px 0px;
 }
+
 
 .s-d-container{
   display: flex;
@@ -267,6 +268,9 @@ height: 55%;
 .map-img{
   width:100%;
   border-radius: 20px;
+}
+.weather-report-content h4{
+  margin:10px 0px;
 }
 
 

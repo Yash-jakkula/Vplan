@@ -2,37 +2,19 @@ import React from "react";
 import { travels } from "./Vplan.js"
 
 export default function Travel(props){
-    console.log(props.weatherData)
-
-//     const sunrise = new Date(props.weatherData.sunrise * 1000).toLocaleTimeString('en-IN', {timeZone: 'Asia/Kolkata'});
-// const sunset = new Date(props.weatherData.sunset * 1000).toLocaleTimeString('en-IN', {timeZone: 'Asia/Kolkata'});
-
-// const [imgSrc,setImgSrc]=React.useState(null);
-// React.useEffect( ()=> {
-//     if(props.weatherData.cloud_pct <= 20){
-//         setImgSrc('Sunny.webp')
-//     } 
-//     else if(props.weatherData.cloud_pct > 20 && props.weatherData.cloud_pct <=70){
-//         setImgSrc('PartlyCloudy.jpg')
-//     }
-//     else if(props.weatherData.cloud_pct > 70 && props.weatherData.cloud_pct <=90){
-//         setImgSrc('Cool.jpg')
-//     }
-//     else{
-//         setImgSrc('rainy.jpg')
-//     }
-// },[props.weatherData.cloud_pct])
-  
-
+    const sunrise = new Date(props.weatherData.sunrise * 1000).toLocaleTimeString('en-IN', {timeZone: 'Asia/Kolkata'});
+    const sunset = new Date(props.weatherData.sunset * 1000).toLocaleTimeString('en-IN', {timeZone: 'Asia/Kolkata'});
    function travelPlaces(){
     travels();
    }
+
     return(
         <div className="travelDetails">
 
             <div className="sideBar">
 
             <div className="Booking">
+                <h1>{props.destinationName}</h1>
                <h4 id="bookYourStay">Book your Stay</h4>
             </div>
 
@@ -78,19 +60,22 @@ export default function Travel(props){
         <div>
         <div className="weather-content">
         <div className="weather-img-div">
+       
           
-            <div className="degree"><span>&#8451;</span></div>
+            <div className="degree"><span>{props.weatherData && props.weatherData.temp}&#8451;</span></div>
         </div>
+        
         <div className="weather-report-content">
-            {props.weatherData && <h4>humidity: {props.weatherData.humidity}</h4>}
-           
-           <h4>max-temp: <span>&#8451;</span></h4>
-           
-           <h4>min_temp:<span>&#8451;</span></h4>
-           
-           <h4>Sunrise: </h4>
 
-           <h4>Sunset: </h4>
+            <h4>humidity: {props.weatherData && props.weatherData.humidity}</h4>
+           
+           <h4>max-temp: {props.weatherData && props.weatherData.max_temp}<span>&#8451;</span></h4>
+           
+           <h4>min_temp:  {props.weatherData && props.weatherData.min_temp}<span>&#8451;</span></h4>
+           
+           <h4>Sunrise: {props.weatherData && sunrise}</h4>
+
+           <h4>Sunset: {props.weatherData && sunset}</h4>
            
         </div>
 
